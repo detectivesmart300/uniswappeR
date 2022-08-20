@@ -89,6 +89,17 @@ uniswap_session <- function(node = get_infura_node(),user_add=NULL,pvt_key=NULL,
     uniswap <- import("uniswap",convert=FALSE)
     uniswap$Uniswap(user_add,pvt_key, version=version)
 }
+pancakeswap_session <- function(node = get_infura_node(),user_add=NULL,pvt_key=NULL,version=2){
+    ## Select which python to use
+    # use_python("/usr/bin/python3")
+
+    ## Set infura Node as
+    py_run_string(paste0('import os;os.environ["PROVIDER"] = "',node,'"'))
+
+    ## Initialise uniswap endpooint
+    uniswap <- import("uniswap",convert=FALSE)
+    uniswap$Uniswap(user_add,pvt_key,factory_contract_addr = factory_contract_addr, router_contract_addr = router_contract_addr,version=version)
+}
 
 #################################################################
 ## Helper Functions
